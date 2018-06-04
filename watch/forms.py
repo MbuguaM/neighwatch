@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import User_profile, Neighborhood, Bussiness
+from .models import User_prof, Neighborhood, Bussiness
 from django.forms.widgets import PasswordInput, TextInput
 
 

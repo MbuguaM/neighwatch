@@ -8,7 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .forms import SignUpForm
 from .tokens import account_activation_token
-from .models import User_prof, Comments, Image
+from .models import User_prof,Neighborhood,Bussiness
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 # decorators 
