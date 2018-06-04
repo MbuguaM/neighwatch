@@ -8,8 +8,8 @@ class user_profile(models.Model):
     # user_name = models.OneToONe(user,on_delete = 'models.CASCADE')
     user = models.OneToOneField(User, on_delete = 'models.CASCADE')
     user_location = models.ForeignKey(Neighborhood, on_delete = 'models.CASCADE')
-    mail_confirm = models.BooleanField(default = True)
-
+    mail_confirm = models.BooleanField(default = False)
+    phone_num = models.IntegerField(10)
     def __str__(self):
         return self.user
 
@@ -31,23 +31,31 @@ class user_profile(models.Model):
 # neighborhood
 class Neighborhood(models.Model):
     """ class for mapping neighbourhood data """
-    name  = models.CharField(max_length = 30)
+    name  = models.CharField(max_length = 30, unique=True)
     location = models.CharField(max_length = 30)
     bussiness = models.OneToMany(Bussiness, on_delete = models.CASCADE)
-    occupant_count = models.IntegerField()
+    occupant_count = models.PositiveIntegerField(default = 0)
     services = models.ForeignKey(Services, on_delete= 'models.CASCADE')
+    hood_admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     
-     def __str__(self):
-        return self.user
+    def __str__(self):
+        return self.name
 
     # methods
-    def save_prof(self):
-        """ saves user instance """
-        self.save()
+    @classmethod
+    def save_neigh(self,name, location):
+        """ saving the neighborhood instance """
+        neigh = cls(name =name, location=location)
+        neigh.save()
+        return neigh
 
     def delete_prof(self):
         """ deletes user instance """
         self.delete()
+
+    @classmethod
+    def find_neigborhood(cls,query):
+        return cls.objects.filter(name__icontains = query)
 
 #bussinesses
 class Bussiness(models.Model):
@@ -55,17 +63,17 @@ class Bussiness(models.Model):
     bussiness_name = models.CharField(max_length = 30)
     user = models.ForeignKey(user_profile, on_delete = 'models.CASCADE')
     Neighborhood = models.ForeignKey(Neighborhood, on_delete = 'models.CASCADE')
-    Email_adress = models.CharField(max_length = 30)
+    Email_adress = models.CharField(max_length = 30,null = True, Blank = True)
 
 
 #post model
 class Posts(models.Model):
     """ model that handles comment data"""
-    title = models.CharField(max_length  = 20)
+    title = models.CharField(max_length  = 20, bank = True, null = True)
     comment = models.TextField()
     user_name  =models.CharField(max_length = 30)
     
-     def __str__(self):
+    def __str__(self):
         return self.user
 
     # methods
@@ -79,15 +87,15 @@ class Posts(models.Model):
 
 class Services(models.Model):
     """ class that saves the services data """
-    police_station = models.CharField(max_length = 30)
-    police_no = models.IntegerField(10)
-    police_address = models.CharField(max_length = 30)
-    healthcare_centre = model.CharField(max_length = 30)
-    healthcare_no = models.IntegerField(10)
-    healthcare_address = models.CharField
+    police_station = models.CharField(max_length = 30 null=True, blank =True)
+    police_no = models.IntegerField( default=0)
+    police_address = models.CharField(max_length = 30 ,blank = True, null = True)
+    healthcare_centre = models.CharField(max_length = 30, blank =True, null =true)
+    healthcare_no = models.IntegerField()
+    healthcare_address = models.CharField(max_length  = 20, null = True , blank = True)
 
-     def __str__(self):
-        return self.user
+    def __str__(self):
+        return self.
 
     # methods
     def save_prof(self):
