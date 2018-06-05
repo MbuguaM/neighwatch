@@ -69,12 +69,12 @@ def activate(request, uidb64, token):
 def home(request):
     """ displays the home page for all users """
     current_user = request.user
-    
+
     # return_list = []
     # for image in all_images:
     #     return_list.append((image, image.image_likes.filter(profile_owner=request.user)))
 
-    return render(request,'main_templates/landing.html')
+    return render(request,'main_templates/landing.html',{'user':current_user})
 
 
 @login_required

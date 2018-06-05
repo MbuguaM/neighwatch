@@ -5,15 +5,13 @@
         {% block title %}
         <title>Neighwatch</title>
         {% endblock %}
-        {% block icon %}
-        <link rel="icon" href="https://images.vexels.com/media/users/3/131675/isolated/preview/30a4a09f3393d32f1a8c368373902c26-owl-head-icon-by-vexels.png">
-        {% endblock %}
+        
         {% block css_main %}
         <link rel="stylesheet" type="text/css" href="#">
         {% endblock %}
         {% block stylesheet %}
         {% endblock %}
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        
     </head>
     <body>
        {% include 'navbar.html' %}
@@ -92,9 +90,5 @@
     {% block content %}
     {% endblock %}
     </div>
-    {% load staticfiles %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'JS/showhideform.js' %}"></script>
-    </body>
+    {% include 'footer.html' %}
 </html>

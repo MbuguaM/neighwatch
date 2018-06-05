@@ -17,25 +17,46 @@
        <!-- NAVBAR BEGINS -->
        <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-          <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'home' %}"><img src=
-                    "https://images.vexels.com/media/users/3/131675/isolated/preview/30a4a09f3393d32f1a8c368373902c26-owl-head-icon-by-vexels.png" 
-                        alt="calligraphy-fonts" border="0" style="height: 30px; margin-top: -5px; display: inline;"><img src="https://fontmeme.com/permalink/180526/5793a5e7d98598b124b8f469a5e61fa4.png" alt="calligraphy-fonts" border="0" style="width: 50px; margin-top: -5px; display: inline;"><img src="https://fontmeme.com/permalink/180526/1acfb13a542e51eb9f2ca45f5bd47a6b.png" alt="calligraphy-fonts" border="0" style="width: 50px; margin-top: -7px; display: inline;"></a>
-                        {% if user.is_authenticated %}
-                        <div><a href="{% url 'view_user' id=user.id %}"><p>{{ user.username }}</p></a></div>
-                        {% endif %}
-          </div>
-          <ul class="nav navbar-nav">
-            <li class=""><a href="{% url 'neighborhoods' %}">Hoods</a></li>
-            <li class=""><a href=""></a></li> 
-            {% if request.path == "/view/" %}
-            <li class=""><a href="{% url 'bussinesses' %}">Add a Neighborhood</a></li>
-            {% endif %}                   
-            {% if user.is_authenticated %}
-            <li class=""><a href="{% url 'logout' %}">Logout</a></li>
-            {% endif %}
-          </ul>
-        </div>
+            <div class = 'container'>
+                <div class = 'row'>
+                <div class="col-md-4 navbar-header">
+                            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo2.jpg'%}"
+                                    alt="calligraphy-fonts" border="0" style="height: 80px; padding:0px; margin-top: 0px; display: inline;"></a>
+                                    
+                                    {% if user.is_authenticated %}
+                                    <a href="#"><p  style = 'padding-left:82px; margin:0px; '>{{ user.username }}</p></a>
+                                    {% endif %}
+                        </div>
+                <div class = 'col-md-4'>
+                        <form style=" padding:0px; margin:0px; padding-top:30px; padding-left:20px;">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                                            </svg>
+                                     
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Username/Bussiness" aria-label="Username" aria-describedby="basic-addon1">
+                                  </div>
+                                </div>   
+                        </form>
+                
+                <div class = 'col-md-4'>
+                    <ul class="nav navbar-nav" style = "padding-top:20px; text-align:right;"> 
+                        <a href="{% url 'home' %}">Hoods</a>  
+                        <a href="{% url 'bussinesses' %}">Add a Neighborhood</a>
+                    
+                        <a href="{% url 'logout' %}">Logout</a>
+
+                        </ul> 
+                    </div>
+                        </div>
+                </div>
+                        
+                </div>
+          
+      
       </nav>
 <!-- NAVBAR ENDS -->
     <hr>

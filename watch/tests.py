@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import User_prof, Neighborhood, bussinesses 
+from .models import User_prof, Neighborhood, Bussinesses 
 
 # Create your tests here.
 class User_profTestClass(TestCase):
