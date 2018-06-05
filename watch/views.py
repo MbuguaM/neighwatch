@@ -46,7 +46,7 @@ def account_activation_sent(request):
     current_user = request.user
     if current_user.is_authenticated():
         return HttpResponseRedirect('/')
-    return render(request, 'registration/account_activation_complete.html')
+    return render(request, 'registration/activation_complete.html')
 
 def activate(request, uidb64, token):
     """ funtction to authenticate user activation from the email """
@@ -63,15 +63,58 @@ def activate(request, uidb64, token):
         login(request, user)
         return redirect('home')
     else:
-        return render(request, 'registration/account_activation_invalid.html')
+        return render(request, 'registration/activation_invalid.html')
 
 @login_required
 def home(request):
-    """ displays the landing page """
+    """ displays the home page for all users """
     current_user = request.user
-    all_images = Image.objects.all()
+    
     # return_list = []
     # for image in all_images:
     #     return_list.append((image, image.image_likes.filter(profile_owner=request.user)))
 
-    return render(request,'all_templates/landing.html',{'images':all_images})
+    return render(request,'main_templates/landing.html')
+
+
+@login_required
+def neighborhoods(request):
+    """ view all the avaliable neighbourhoods  and form to add new neighbourhood"""
+    current_user = request.user
+    
+    
+    return render(request,'main_templates/neighborhoods.html')
+
+
+@login_required
+def view_neigh(request):
+    """ view all the details of a certain neighborhood and commenting """
+    current_user = request.user
+    
+    return render(request,'main_templates/view_neigh.html')
+
+
+@login_required
+def bussinesses(request):
+    """ view all the avaliable bussinesses  and form to add new bussiness"""
+    current_user = request.user
+    
+    
+    return render(request,'main_templates/view_bussiness.html')
+
+
+@login_required
+def view_buss(request):
+    """ view all the details of a certain bussiness and commenting """
+    current_user = request.user
+    
+    return render(request,'main_templates/view_buss.html')
+
+
+@login_required
+def search(request):
+    """ displays the landing page """
+    current_user = request.user
+
+    return render(request,'main_templates/search.html')
+

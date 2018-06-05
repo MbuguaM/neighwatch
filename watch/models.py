@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.utils import timezone
+
 # Create your models here.
 #models  
 # user
@@ -77,10 +81,10 @@ class Services(models.Model):
 class User_prof(models.Model):
     """ class that saves the user data """
     # user_name = models.OneToONe(user,on_delete = 'models.CASCADE')
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    user_location = models.ForeignKey(Neighborhood, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE ,related_name ='profile')
+    user_location = models.ForeignKey(Neighborhood, on_delete = models.CASCADE, null = True)
     mail_confirm = models.BooleanField(default = False)
-    phone_num = models.IntegerField(10)
+    phone_num = models.IntegerField(null =True)
     def __str__(self):
         return self.user
 
@@ -97,6 +101,12 @@ class User_prof(models.Model):
         """ redifining the mail_confirm field in the user_prof"""
         self.mail_confirm = False
         self.save()
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        User_prof.objects.create(user=instance)
+    instance.profile.save()
 
  #bussinesses
 class Bussiness(models.Model):

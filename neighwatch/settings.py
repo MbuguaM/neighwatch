@@ -130,24 +130,25 @@ STATIC_URL = '/static/'
 
 
 DATABASES['default'].update(db_from_env)
-
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 STATICFILES_DIRS= [
 os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+
 STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+LOGIN_REDIRECT_URL = ('/')
+LOGIN_URL = ('/login')
 
 
 # Email configurations remember to install python-decouple
 
 
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

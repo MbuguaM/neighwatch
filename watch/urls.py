@@ -7,9 +7,12 @@ from . import views
 urlpatterns = [
   #landin page 
   url(r'^$',views.home, name ="home"),
-  # navigating though 
-#   url(r'^explore/$',views.explore,name = "explore"),
-
+  # urls for neighbourhoods
+  url(r'^neigborhoods$',views.neighborhoods, name ="neighborhoods"),
+  url(r'^view_neigh$',views.view_neigh, name ="view_neigh"),
+  # urls for bussinesses
+  url(r'^bussinesses$',views.bussinesses, name ="bussinesses"),
+  url(r'^view_buss$',views.view_buss, name ="view_buss"),
   
 ]
 

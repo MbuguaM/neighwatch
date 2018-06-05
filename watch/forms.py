@@ -24,7 +24,7 @@ class UserProfForm(forms.ModelForm):
     """updating user infomation """
     class Meta:
         model = User_prof
-        fields = ( 'phone_num')
+        fields = ( 'phone_num',)
         exclude = ('user', 'mail-confirm', 'user_location')
 
 class PostForm(forms.ModelForm):
@@ -52,7 +52,7 @@ class BusinessForm(forms.ModelForm):
     Email_adress = forms.CharField(required=False, help_text="Enter the business's email address.")
 
     class Meta:
-        model = Business
+        model = Bussiness
         fields = ('bussiness_name', 'Email_adress')
         exclude = ('neighborhood','user')
 
