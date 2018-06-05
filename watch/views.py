@@ -118,3 +118,17 @@ def search(request):
 
     return render(request,'main_templates/search.html')
 
+@login_required
+def view_user(request):
+    """ displays user infomation """
+    current_user = request.user
+
+    return render(request,'main_templates/view_user.html')
+
+
+@login_required
+def update_user(request):
+    """ displays user infomation """
+    current_user = request.user
+
+    return render(request,'main_templates/update_user.html')
