@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from .forms import SignUpForm
+from .forms import SignUpForm, NeighborhoodForm
 from .tokens import account_activation_token
 from .models import User_prof,Neighborhood,Bussiness
 from django.contrib.auth.models import User
@@ -78,19 +78,31 @@ def home(request):
 
 
 @login_required
-def neighborhoods(request):
+def neighborhoods(request, ):
     """ view all the avaliable neighbourhoods  and form to add new neighbourhood"""
     current_user = request.user
-    
-    
-    return render(request,'main_templates/neighborhoods.html')
-
+    hood = Neighborhood.objects.all()    
+    # print(hood)
+    if request.method == 'POST':
+        profile_form = NeighborhoodForm(
+            request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            print(profile_form)
+            # messages.success(request, _(
+            #     'Your profile was successfully updated!'))
+            return redirect('home')
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        form = NeighborhoodForm()
+    # return render(request, 'edit-profile.html', {"profile_form": profile_form})
+        return render(request,'main_templates/neighborhoods.html', {'form': form, 'hood': hood})
 
 @login_required
 def view_neigh(request):
     """ view all the details of a certain neighborhood and commenting """
-    current_user = request.user
-    
+    # current_user = request.user    
     return render(request,'main_templates/view_neigh.html')
 
 

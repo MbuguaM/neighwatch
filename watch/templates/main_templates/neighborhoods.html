@@ -1,9 +1,27 @@
 {% extends 'main_templates/base.html' %}
+{% load bootstrap4 %}
  {% load static %}
 
  {{block.super}}
 
 {% block content %}
-   
+  <div class="container">
+       <div class="row">
+       <div class="col-md-8">
+          # displaying user info
+            {% for hood in hood%}
+            <li>{{hood}}</li>
+            {% endfor%}
+       </div>
+       <div class = "col-md-4">
+        <form action="" method="post">
+            {% csrf_token%}
+         {% bootstrap_form form %}
+         <input type="submit" value="Create">
+        </form>
+       </div>
+   </div>
+  </div>  
+  
 
 {% endblock %}

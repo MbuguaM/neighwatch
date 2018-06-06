@@ -24,7 +24,7 @@ class UserProfForm(forms.ModelForm):
     """updating user infomation """
     class Meta:
         model = User_prof
-        fields = ( 'phone_num',)
+        fields = ( 'phone_num','image')
         exclude = ('user', 'mail-confirm', 'user_location')
 
 class PostForm(forms.ModelForm):
@@ -37,14 +37,15 @@ class PostForm(forms.ModelForm):
 
 class NeighborhoodForm(forms.ModelForm):
     """ form for adding infomation to the neighboorhood class"""
-    name = forms.CharField(help_text="Please enter the name of the neighborhood.")
-    location = forms.CharField(help_text="Please enter the location.")
-    occupant_count = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    # name = forms.CharField(help_text="Please enter the name of the neighborhood.")
+    # location = forms.CharField(help_text="Please enter the location.")
+    # occupant_count = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
 
     class Meta:
         model = Neighborhood
-        fields = ( 'name', 'location', 'occupant_count')
+        # fields = ( 'name', 'location', 'occupant_count')
+        exclude = ['hood_admin']
 
 class BusinessForm(forms.ModelForm):
     """form for adding infomation to the bussiness class  """
@@ -53,6 +54,6 @@ class BusinessForm(forms.ModelForm):
 
     class Meta:
         model = Bussiness
-        fields = ('bussiness_name', 'Email_adress')
+        fields = ('bussiness_name', 'Email_adress', 'image')
         exclude = ('neighborhood','user')
 
