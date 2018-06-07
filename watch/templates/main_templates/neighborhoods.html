@@ -8,12 +8,26 @@
   <div class="container">
        <div class="row">
        <div class="col-md-8">
-          # displaying user info
-            {% for hood in hood%}
-            <li>{{hood}}</li>
-            {% endfor%}
+          <h4 class = "text-center" style = "color:rgb(79, 133, 235"> Neighbourhoods</h4>
+          {% for hood in hood %}
+          <div class="card">
+              <div class="card-header">
+                  {% if hood.image %}
+                  <span><img src="{{hood.image.url}}" class="img-fluid profile"></span>
+                  {% endif %}
+              </div>
+              <div class="card-body">
+                  <p class="font-weight-bold"> Neighborhood name:{{hood.name}}</p>
+                  <p>neighborhood location:{{hood.location}}</p>
+                  <p>Occupants_count:{{hood.occupant_count}}</p>
+    
+              </div>
+          </div>
+          <br><br>
+      {% endfor %}
        </div>
        <div class = "col-md-4">
+         <h6 class= "text-center" style = " color:rgb(79, 133, 235);">Add a neighbourhood</h6>
         <form action="" method="post">
             {% csrf_token%}
          {% bootstrap_form form %}

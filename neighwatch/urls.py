@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('watch.urls')),
     # entrry urls
-    url(r'^accounts/login/$', views.LoginView.as_view(template_name = 'registration/login.html', authentication_form = LoginForm,  ), name='login'),
+    url(r'^login/$', views.LoginView.as_view(template_name = 'registration/login.html', authentication_form = LoginForm,  ), name='login'),
     url(r'^signup/$', auth_views.signup, name='signup'),
     url(r'^logout/$', views.logout, {'next_page': 'login'}, name='logout'),
     # mail confimation urls

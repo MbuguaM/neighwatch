@@ -84,11 +84,9 @@ def neighborhoods(request, ):
     hood = Neighborhood.objects.all()    
     # print(hood)
     if request.method == 'POST':
-        profile_form = NeighborhoodForm(
-            request.POST, instance=request.user.profile)
+        profile_form = NeighborhoodForm(request.POST,request.FILES)
         if profile_form.is_valid():
             profile_form.save()
-            print(profile_form)
             # messages.success(request, _(
             #     'Your profile was successfully updated!'))
             return redirect('home')
@@ -110,9 +108,19 @@ def view_neigh(request):
 def bussinesses(request):
     """ view all the avaliable bussinesses  and form to add new bussiness"""
     current_user = request.user
+    bussiness = Bussiness.objects.all()
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            # bussiness = Neighborhood(image = request.FILES['image'])
+            neighborhood = form.save(commit=True)
+            return redirect('view_neigh')
+    else:
+        print(form.errors)
+    return render(request, 'new_neighborhood.html', {'form':form,'bussiness':bussiness})
     
     
-    return render(request,'main_templates/view_bussiness.html')
+    
 
 
 @login_required
